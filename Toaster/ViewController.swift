@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Toaster
 //
-//  Created by neo on 23.04.15.
+//  Created by NSSimpleApps on 23.04.15.
 //  Copyright (c) 2015 NSSimpleApps. All rights reserved.
 //
 
@@ -11,8 +11,8 @@ import UIKit
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +20,15 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    @IBAction func showToaster() {
+        
+        Toaster(frame: CGRectMake(100, 100, 100, 100)).show("Toaster. Tap to hide annoying view")
+    }
 
+    @IBAction func showToasterWithDuration() {
+        
+        Toaster(frame: CGRectMake(100, 100, 100, 100)).show("Toaster. Tap to hide annoying view", duration: 1.0)
+    }
 }
 

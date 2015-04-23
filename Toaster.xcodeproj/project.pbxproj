@@ -13,6 +13,8 @@
 		B5843C401AE940B6004A545E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5843C3F1AE940B6004A545E /* Images.xcassets */; };
 		B5843C431AE940B6004A545E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5843C411AE940B6004A545E /* LaunchScreen.xib */; };
 		B5843C4F1AE940B6004A545E /* ToasterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5843C4E1AE940B6004A545E /* ToasterTests.swift */; };
+		B5843C591AE940D3004A545E /* Toaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5843C581AE940D3004A545E /* Toaster.swift */; };
+		B5D1FB701AE957630070F9FC /* Toaster.gif in Resources */ = {isa = PBXBuildFile; fileRef = B5D1FB6F1AE957630070F9FC /* Toaster.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		B5843C481AE940B6004A545E /* ToasterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToasterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5843C4D1AE940B6004A545E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5843C4E1AE940B6004A545E /* ToasterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToasterTests.swift; sourceTree = "<group>"; };
+		B5843C581AE940D3004A545E /* Toaster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toaster.swift; sourceTree = "<group>"; };
+		B5D1FB6F1AE957630070F9FC /* Toaster.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Toaster.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 			children = (
 				B5843C381AE940B6004A545E /* AppDelegate.swift */,
 				B5843C3A1AE940B6004A545E /* ViewController.swift */,
+				B5843C581AE940D3004A545E /* Toaster.swift */,
+				B5D1FB6F1AE957630070F9FC /* Toaster.gif */,
 				B5843C3C1AE940B6004A545E /* Main.storyboard */,
 				B5843C3F1AE940B6004A545E /* Images.xcassets */,
 				B5843C411AE940B6004A545E /* LaunchScreen.xib */,
@@ -193,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5843C3E1AE940B6004A545E /* Main.storyboard in Resources */,
+				B5D1FB701AE957630070F9FC /* Toaster.gif in Resources */,
 				B5843C431AE940B6004A545E /* LaunchScreen.xib in Resources */,
 				B5843C401AE940B6004A545E /* Images.xcassets in Resources */,
 			);
@@ -214,6 +221,7 @@
 			files = (
 				B5843C3B1AE940B6004A545E /* ViewController.swift in Sources */,
 				B5843C391AE940B6004A545E /* AppDelegate.swift in Sources */,
+				B5843C591AE940D3004A545E /* Toaster.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +419,7 @@
 				B5843C541AE940B6004A545E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B5843C551AE940B6004A545E /* Build configuration list for PBXNativeTarget "ToasterTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +428,7 @@
 				B5843C571AE940B6004A545E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
