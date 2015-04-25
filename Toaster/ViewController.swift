@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var customView: UIView!
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -23,12 +24,17 @@ class ViewController: UIViewController {
     
     @IBAction func showToaster() {
         
-        Toaster(frame: CGRectMake(100, 100, 100, 100)).show("Toaster. Tap to hide annoying view")
+        Toaster(frame: CGRectMake(100, 100, 100, 100)).show("Toaster. Tap to hide annoying view.")
     }
 
     @IBAction func showToasterWithDuration() {
         
         Toaster(frame: CGRectMake(100, 100, 100, 100)).show("Toaster. Tap to hide annoying view", duration: 1.0)
+    }
+    
+    @IBAction func showToasterOnView() {
+        
+        self.customView.showToaster(CGRectMake(100, 100, 100, 100), message: "Toaster. Tap to hide annoying view")
     }
 }
 

@@ -66,11 +66,9 @@ extension NSString {
 
 class Toaster: UIView {
     
-    private let initialPoint: CGPoint = CGPointMake(5, 5)
+    private let initialPoint: CGPoint = CGPointMake(3, 3)
     
-    private let maxDuration: NSTimeInterval = 2.0
-    
-    private var tapGesture = UITapGestureRecognizer()
+    private var tapGestureRecognizer = UITapGestureRecognizer()
     
     override init(frame: CGRect) {
         
@@ -80,13 +78,13 @@ class Toaster: UIView {
         self.layer.cornerRadius = 10.0
         
         self.layer.shadowColor = UIColor.blackColor().CGColor
-        self.layer.shadowOpacity = 0.8
+        self.layer.shadowOpacity = 0.6
         self.layer.shadowRadius = 4.0
         self.layer.shadowOffset = CGSizeMake(4.0, 4.0)
         
         self.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
         
-        self.tapGesture = UITapGestureRecognizer(target: self, action: Selector("hideFromSuperView:"))
+        self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("cleanUp:"))
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -113,57 +111,83 @@ class Toaster: UIView {
         return label
     }
     
-    
-    func show(message: NSString) {
+    func addLabel(message: NSString) {
         
         let label = self.label(message)
         let labelSize = label.bounds.size
         
         self.bounds.size = CGSizeMake(labelSize.width + 2*self.initialPoint.x, labelSize.height + 2*self.initialPoint.y)
+        
         self.addSubview(label)
+    }
+    
+    func placeOnViewController() {
         
         if let window: AnyObject = UIApplication.sharedApplication().windows.first {
             
-            (window as! UIWindow).visibleViewController()?.view.addSubview(self)
-            
-            self.superview?.addGestureRecognizer(self.tapGesture)
-        }
-        
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(self.maxDuration * Double(NSEC_PER_SEC)))
-        
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            
-            self.hideFromSuperView(self.tapGesture)
+            if let superView = (window as! UIWindow).visibleViewController()?.view {
+                
+                superView.addSubview(self)
+                superView.addGestureRecognizer(self.tapGestureRecognizer)
+            }
         }
     }
     
-    func show(message: NSString, duration: NSTimeInterval) {
+    func placeOnView(view: UIView) {
         
-        let label = self.label(message)
-        let labelSize = label.bounds.size
-        
-        self.bounds.size = CGSizeMake(labelSize.width + 2*self.initialPoint.x, labelSize.height + 2*self.initialPoint.y)
-        
-        self.addSubview(label)
-        
-        if let window: AnyObject = UIApplication.sharedApplication().windows.first {
-            
-            (window as! UIWindow).visibleViewController()?.view.addSubview(self)
-            
-            self.superview?.addGestureRecognizer(self.tapGesture)
-        }
+        view.addSubview(self)
+        view.addGestureRecognizer(self.tapGestureRecognizer)
+    }
+    
+    func hideWithDuration(duration: NSTimeInterval = 2.0) {
         
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(duration * Double(NSEC_PER_SEC)))
         
         dispatch_after(delayTime, dispatch_get_main_queue()) {
             
-            self.hideFromSuperView(self.tapGesture)
+            self.cleanUp(self.tapGestureRecognizer)
         }
     }
     
-    func hideFromSuperView(sender: UITapGestureRecognizer) {
+    func cleanUp(sender: UITapGestureRecognizer) {
         
         self.superview?.removeGestureRecognizer(sender)
         self.removeFromSuperview()
     }
+    
+    func show(message: NSString) {
+        
+        self.addLabel(message)
+        self.placeOnViewController()
+        self.hideWithDuration()
+    }
+    
+    func show(message: NSString, duration: NSTimeInterval) {
+        
+        self.addLabel(message)
+        self.placeOnViewController()
+        self.hideWithDuration(duration: duration)
+    }
 }
+
+extension UIView {
+    
+    func showToaster(frame: CGRect, message: NSString) {
+        
+        let toaster = Toaster(frame: frame)
+        toaster.addLabel(message)
+        toaster.placeOnView(self)
+        toaster.hideWithDuration()
+    }
+    
+    func showToaster(frame: CGRect, message: NSString, duration: NSTimeInterval) {
+        
+        let toaster = Toaster(frame: frame)
+        toaster.addLabel(message)
+        toaster.placeOnView(self)
+        toaster.hideWithDuration(duration: duration)
+    }
+}
+
+
+

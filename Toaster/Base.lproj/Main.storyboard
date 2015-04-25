@@ -18,17 +18,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3GU-la-buc">
-                                <rect key="frame" x="16" y="285" width="80" height="30"/>
-                                <state key="normal" title="Show Toast">
+                                <rect key="frame" x="16" y="28" width="37" height="30"/>
+                                <state key="normal" title="Toast">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="showToaster" destination="BYZ-38-t0r" eventType="touchUpInside" id="aea-c7-q3N"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KM2-6f-HJR">
+                                <rect key="frame" x="495" y="28" width="89" height="30"/>
+                                <state key="normal" title="Toast in view">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showToasterOnView" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ucr-eb-l7D"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZMu-X3-jQR">
+                                <rect key="frame" x="200" y="380" width="200" height="200"/>
+                                <color key="backgroundColor" red="0.18820326849999999" green="1" blue="0.048200677060000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Ae4-8K-JfS"/>
+                                    <constraint firstAttribute="height" constant="200" id="ad8-Q4-O6i"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZh-Kg-CkD">
-                                <rect key="frame" x="380" y="285" width="204" height="30"/>
-                                <state key="normal" title="Show Toast with duration=1.0">
+                                <rect key="frame" x="238" y="28" width="124" height="30"/>
+                                <state key="normal" title="Toast (duration=1)">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -38,12 +55,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="3GU-la-buc" secondAttribute="centerY" id="D6N-DS-OtY"/>
-                            <constraint firstItem="3GU-la-buc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="KsE-pC-091"/>
-                            <constraint firstAttribute="centerY" secondItem="rZh-Kg-CkD" secondAttribute="centerY" id="c2d-sw-qEa"/>
-                            <constraint firstItem="rZh-Kg-CkD" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="iBX-Ih-43u"/>
+                            <constraint firstAttribute="centerX" secondItem="ZMu-X3-jQR" secondAttribute="centerX" id="0ja-Cq-xuO"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ZMu-X3-jQR" secondAttribute="bottom" constant="20" id="4ri-hg-d5b"/>
+                            <constraint firstItem="rZh-Kg-CkD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="5pg-ce-O2N"/>
+                            <constraint firstItem="KM2-6f-HJR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="CM0-Sd-R65"/>
+                            <constraint firstItem="3GU-la-buc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="K1p-mv-Dkn"/>
+                            <constraint firstItem="3GU-la-buc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="buw-a1-eyi"/>
+                            <constraint firstItem="KM2-6f-HJR" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="fL1-vb-fdF"/>
+                            <constraint firstAttribute="centerX" secondItem="rZh-Kg-CkD" secondAttribute="centerX" id="qC4-53-BUX"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="customView" destination="ZMu-X3-jQR" id="3JV-CR-z4m"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
