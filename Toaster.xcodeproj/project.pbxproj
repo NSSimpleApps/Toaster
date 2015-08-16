@@ -13,19 +13,8 @@
 		B5843C3E1AE940B6004A545E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5843C3C1AE940B6004A545E /* Main.storyboard */; };
 		B5843C401AE940B6004A545E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5843C3F1AE940B6004A545E /* Images.xcassets */; };
 		B5843C431AE940B6004A545E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5843C411AE940B6004A545E /* LaunchScreen.xib */; };
-		B5843C4F1AE940B6004A545E /* ToasterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5843C4E1AE940B6004A545E /* ToasterTests.swift */; };
 		B5843C591AE940D3004A545E /* Toaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5843C581AE940D3004A545E /* Toaster.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		B5843C491AE940B6004A545E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B5843C2B1AE940B5004A545E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B5843C321AE940B6004A545E;
-			remoteInfo = Toaster;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B566F1141AEC078900DBA6B1 /* Toaster.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Toaster.gif; sourceTree = "<group>"; };
@@ -36,7 +25,6 @@
 		B5843C3D1AE940B6004A545E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B5843C3F1AE940B6004A545E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B5843C421AE940B6004A545E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		B5843C481AE940B6004A545E /* ToasterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToasterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5843C4D1AE940B6004A545E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5843C4E1AE940B6004A545E /* ToasterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToasterTests.swift; sourceTree = "<group>"; };
 		B5843C581AE940D3004A545E /* Toaster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toaster.swift; sourceTree = "<group>"; };
@@ -44,13 +32,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		B5843C301AE940B6004A545E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B5843C451AE940B6004A545E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -73,7 +54,6 @@
 			isa = PBXGroup;
 			children = (
 				B5843C331AE940B6004A545E /* Toaster.app */,
-				B5843C481AE940B6004A545E /* ToasterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,24 +118,6 @@
 			productReference = B5843C331AE940B6004A545E /* Toaster.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B5843C471AE940B6004A545E /* ToasterTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B5843C551AE940B6004A545E /* Build configuration list for PBXNativeTarget "ToasterTests" */;
-			buildPhases = (
-				B5843C441AE940B6004A545E /* Sources */,
-				B5843C451AE940B6004A545E /* Frameworks */,
-				B5843C461AE940B6004A545E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B5843C4A1AE940B6004A545E /* PBXTargetDependency */,
-			);
-			name = ToasterTests;
-			productName = ToasterTests;
-			productReference = B5843C481AE940B6004A545E /* ToasterTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -167,10 +129,6 @@
 				TargetAttributes = {
 					B5843C321AE940B6004A545E = {
 						CreatedOnToolsVersion = 6.3.1;
-					};
-					B5843C471AE940B6004A545E = {
-						CreatedOnToolsVersion = 6.3.1;
-						TestTargetID = B5843C321AE940B6004A545E;
 					};
 				};
 			};
@@ -188,7 +146,6 @@
 			projectRoot = "";
 			targets = (
 				B5843C321AE940B6004A545E /* Toaster */,
-				B5843C471AE940B6004A545E /* ToasterTests */,
 			);
 		};
 /* End PBXProject section */
@@ -205,13 +162,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B5843C461AE940B6004A545E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -225,23 +175,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B5843C441AE940B6004A545E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B5843C4F1AE940B6004A545E /* ToasterTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		B5843C4A1AE940B6004A545E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B5843C321AE940B6004A545E /* Toaster */;
-			targetProxy = B5843C491AE940B6004A545E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B5843C3C1AE940B6004A545E /* Main.storyboard */ = {
@@ -299,7 +233,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -338,7 +272,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -351,6 +285,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Toaster/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -361,42 +296,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Toaster/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		B5843C561AE940B6004A545E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ToasterTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Toaster.app/Toaster";
-			};
-			name = Debug;
-		};
-		B5843C571AE940B6004A545E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ToasterTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Toaster.app/Toaster";
 			};
 			name = Release;
 		};
@@ -417,15 +319,6 @@
 			buildConfigurations = (
 				B5843C531AE940B6004A545E /* Debug */,
 				B5843C541AE940B6004A545E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B5843C551AE940B6004A545E /* Build configuration list for PBXNativeTarget "ToasterTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B5843C561AE940B6004A545E /* Debug */,
-				B5843C571AE940B6004A545E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

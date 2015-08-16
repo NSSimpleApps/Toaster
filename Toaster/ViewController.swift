@@ -11,9 +11,11 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var customView: UIView!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,19 +24,21 @@ class ViewController: UIViewController {
     }
 
     
-    @IBAction func showToaster() {
+    @IBAction func showToasterAtCenter() {
         
-        Toaster(frame: CGRectMake(100, 100, 100, 100)).show("Toaster. Tap to hide annoying view.")
+        Toaster(center: CGPointMake(200, 200)).show("Tap to hide annoying view.")
+        
+        //Toaster(toasterPosition: .BottomRight).show("Tap to hide annoying view.")
     }
 
-    @IBAction func showToasterWithDuration() {
+    @IBAction func showToasterAtTopLeftCorner() {
         
-        Toaster(frame: CGRectMake(100, 100, 100, 100)).show("Toaster. Tap to hide annoying view", duration: 1.0)
+        Toaster(topLeftCorner: CGPointMake(200, 200)).show("Tap to hide annoying view.")
     }
     
     @IBAction func showToasterOnView() {
         
-        self.customView.showToaster(CGRectMake(100, 100, 100, 100), message: "Toaster. Tap to hide annoying view")
+        self.customView.showToaster("Tap to hide annoying view")
     }
 }
 

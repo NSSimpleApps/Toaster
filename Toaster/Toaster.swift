@@ -8,47 +8,36 @@
 
 import UIKit
 
-extension UIWindow {
+//UIEdgeInsetsInsetRect
+
+extension UIViewController {
+
+    func topMostViewController() -> UIViewController {
     
-    func visibleViewController() -> UIViewController? {
+        if let presentedViewController = self.presentedViewController {
         
-        if let rootViewController: UIViewController  = self.rootViewController {
-            
-            return UIWindow.getVisibleViewControllerFrom(rootViewController)
-        }
+            return presentedViewController.topMostViewController()
         
-        return nil
-    }
-    
-    class func getVisibleViewControllerFrom(vc: UIViewController) -> UIViewController {
+        } else if let navigationController = self as? UINavigationController {
+            
+            let visibleViewController = navigationController.visibleViewController
         
-        if vc.isKindOfClass(UINavigationController.self) {
-            
-            let navigationController = vc as! UINavigationController
-            
-            return UIWindow.getVisibleViewControllerFrom(navigationController.visibleViewController)
-            
-        } else if vc.isKindOfClass(UITabBarController.self) {
-            
-            let tabBarController = vc as! UITabBarController
-            
-            return UIWindow.getVisibleViewControllerFrom(tabBarController.selectedViewController!)
+            return visibleViewController.topMostViewController()
+        
+        } else if let tabBarController = self as? UITabBarController {
+        
+            let selectedViewController = tabBarController.selectedViewController
+        
+            return selectedViewController!.topMostViewController()
             
         } else {
             
-            if let presentedViewController = vc.presentedViewController {
-                
-                return UIWindow.getVisibleViewControllerFrom(presentedViewController.presentedViewController!)
-                
-            } else {
-                
-                return vc
-            }
+            return self
         }
     }
 }
 
-extension NSString {
+private extension NSString {
     
     func size(font: UIFont, maximumSize: CGSize, lineBreakMode: NSLineBreakMode) -> CGSize {
         
@@ -63,20 +52,124 @@ extension NSString {
     }
 }
 
-
-class Toaster: UIView {
+private extension UIApplication {
     
-    private let initialPoint: CGPoint = CGPointMake(3, 3)
+    var mainView: UIView? {
+        
+        if let appDelegate = self.delegate as? AppDelegate {
+            
+            if let rootViewController = appDelegate.window?.rootViewController {
+                
+                return rootViewController.topMostViewController().view
+            }
+        }
+        return nil
+    }
+}
+
+public enum ToasterPosition {
+    
+    case TopLeft
+    case TopCenter
+    case TopRight
+    
+    case CenterLeft
+    case CenterCenter
+    case CenterRight
+    
+    case BottomLeft
+    case BottomCenter
+    case BottomRight
+    
+    func center(rect: CGRect) -> CGPoint {
+        
+        let width = rect.size.width
+        let height = rect.size.height
+        
+        switch self {
+            
+        case TopLeft:
+            return CGPointMake(width/6, height/6)
+        case TopCenter:
+            return CGPointMake(width/2, height/6)
+        case TopRight:
+            return CGPointMake(5*width/6, height/6)
+            
+        case CenterLeft:
+            return CGPointMake(width/6, height/2)
+        case CenterCenter:
+            return CGPointMake(width/2, height/2)
+        case CenterRight:
+            return CGPointMake(5*width/6, height/2)
+            
+        case BottomLeft:
+            return CGPointMake(width/6, 5*height/6)
+        case BottomCenter:
+            return CGPointMake(width/2, 5*height/6)
+        case BottomRight:
+            return CGPointMake(5*width/6, 5*height/6)
+        }
+    }
+}
+
+private let offset: CGFloat = 3
+
+class Toaster : UIView {
     
     private var tapGestureRecognizer = UITapGestureRecognizer()
     
-    override init(frame: CGRect) {
+    private var addLabelBlock: ((String) -> ())?
+    
+    convenience init(topLeftCorner: CGPoint) {
+        
+        let mainViewFrame = UIApplication.sharedApplication().mainView!.frame
+        
+        self.init(frame: CGRect(origin: topLeftCorner, size: CGSizeMake(mainViewFrame.size.width/3, mainViewFrame.size.height/3)))
+        
+        self.addLabelBlock = { (message: String) -> Void in
+            
+            let label = self.label(message, frame: self.frame)
+            label.frame.origin = CGPoint(x: offset, y: offset)
+            
+            self.frame = CGRect(origin: self.frame.origin, size: label.frame.rectByInsetting(dx: -offset, dy: -offset).size)
+            
+            self.addSubview(label)
+        }
+    }
+    
+    convenience init(center: CGPoint) {
+        
+        let mainViewFrame = UIApplication.sharedApplication().mainView!.frame
+        
+        self.init(frame: CGRect(origin: mainViewFrame.origin, size: CGSizeMake(mainViewFrame.size.width/3, mainViewFrame.size.height/3)))
+        
+        self.addLabelBlock = { (message: String) -> Void in
+            
+            let label = self.label(message, frame: self.frame)
+            label.frame.origin = CGPoint(x: offset, y: offset)
+            
+            self.frame = CGRect(origin: CGPointZero, size: label.frame.rectByInsetting(dx: -offset, dy: -offset).size)
+            self.center = center
+            
+            self.addSubview(label)
+        }
+    }
+
+    convenience init(toasterPosition: ToasterPosition = .CenterCenter) {
+        
+        let mainViewFrame = UIApplication.sharedApplication().mainView!.frame
+        
+        self.init(center: toasterPosition.center(mainViewFrame))
+    }
+    
+    
+    override private init(frame: CGRect) {
         
         super.init(frame: frame)
         
-        self.autoresizingMask = (UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleBottomMargin)
-        self.layer.cornerRadius = 10.0
+        self.autoresizingMask = (.FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin)
         
+        self.layer.cornerRadius = 10.0
         self.layer.shadowColor = UIColor.blackColor().CGColor
         self.layer.shadowOpacity = 0.6
         self.layer.shadowRadius = 4.0
@@ -91,7 +184,7 @@ class Toaster: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func label(message: NSString) -> UILabel {
+    private func label(message: String, frame: CGRect) -> UILabel {
         
         let label = UILabel()
         label.numberOfLines = 0
@@ -100,94 +193,59 @@ class Toaster: UIView {
         label.lineBreakMode = NSLineBreakMode.ByWordWrapping
         label.textColor = UIColor.whiteColor()
         label.backgroundColor = UIColor.clearColor()
-        label.alpha = 1.0
-        label.text = message as String
+        label.text = message
         
-        let maximumLabelSize = CGSizeMake(self.bounds.size.width - 2*self.initialPoint.x, self.bounds.size.height - 2*self.initialPoint.y)
+        let maximumLabelSize = frame.rectByInsetting(dx: offset, dy: offset).size
         
         let labelSize = message.size(label.font, maximumSize: maximumLabelSize, lineBreakMode: label.lineBreakMode)
-        label.frame = CGRectMake(self.initialPoint.x, self.initialPoint.y, labelSize.width, labelSize.height)
+        
+        label.frame = CGRect(origin: CGPointZero, size: labelSize)
         
         return label
     }
     
-    func addLabel(message: NSString) {
+    private func hideWithDuration(duration: NSTimeInterval) {
         
-        let label = self.label(message)
-        let labelSize = label.bounds.size
-        
-        self.bounds.size = CGSizeMake(labelSize.width + 2*self.initialPoint.x, labelSize.height + 2*self.initialPoint.y)
-        
-        self.addSubview(label)
-    }
-    
-    func placeOnViewController() {
-        
-        if let window: AnyObject = UIApplication.sharedApplication().windows.first {
+        UIView.animateWithDuration(duration, animations: { () -> Void in
             
-            if let superView = (window as! UIWindow).visibleViewController()?.view {
-                
-                superView.addSubview(self)
-                superView.addGestureRecognizer(self.tapGestureRecognizer)
-            }
-        }
-    }
-    
-    func placeOnView(view: UIView) {
-        
-        view.addSubview(self)
-        view.addGestureRecognizer(self.tapGestureRecognizer)
-    }
-    
-    func hideWithDuration(duration: NSTimeInterval = 2.0) {
-        
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(duration * Double(NSEC_PER_SEC)))
-        
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.alpha = 0
+            
+        }) { (finished) -> Void in
             
             self.cleanUp(self.tapGestureRecognizer)
         }
     }
     
-    func cleanUp(sender: UITapGestureRecognizer) {
+    internal func cleanUp(sender: UITapGestureRecognizer) {
         
-        self.superview?.removeGestureRecognizer(sender)
+        sender.view?.removeGestureRecognizer(sender)
         self.removeFromSuperview()
     }
     
-    func show(message: NSString) {
+    func show(message: String, duration: NSTimeInterval = 2.0) {
         
-        self.addLabel(message)
-        self.placeOnViewController()
-        self.hideWithDuration()
-    }
-    
-    func show(message: NSString, duration: NSTimeInterval) {
+        self.addLabelBlock!(message)
         
-        self.addLabel(message)
-        self.placeOnViewController()
-        self.hideWithDuration(duration: duration)
+        if let mainView = UIApplication.sharedApplication().mainView {
+            
+            mainView.addSubview(self)
+            mainView.addGestureRecognizer(self.tapGestureRecognizer)
+        }
+        
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(duration/2 * Double(NSEC_PER_SEC)))
+        
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+        
+            self.hideWithDuration(duration/2)
+        }
     }
 }
 
 extension UIView {
     
-    func showToaster(frame: CGRect, message: NSString) {
+    func showToaster(message: String, duration: NSTimeInterval = 2.0) {
         
-        let toaster = Toaster(frame: frame)
-        toaster.addLabel(message)
-        toaster.placeOnView(self)
-        toaster.hideWithDuration()
-    }
-    
-    func showToaster(frame: CGRect, message: NSString, duration: NSTimeInterval) {
-        
-        let toaster = Toaster(frame: frame)
-        toaster.addLabel(message)
-        toaster.placeOnView(self)
-        toaster.hideWithDuration(duration: duration)
+        let toaster = Toaster(center: self.center)
+        toaster.show(message, duration: duration)
     }
 }
-
-
-
