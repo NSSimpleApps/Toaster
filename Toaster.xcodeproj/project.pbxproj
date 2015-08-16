@@ -25,8 +25,6 @@
 		B5843C3D1AE940B6004A545E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B5843C3F1AE940B6004A545E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B5843C421AE940B6004A545E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		B5843C4D1AE940B6004A545E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B5843C4E1AE940B6004A545E /* ToasterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToasterTests.swift; sourceTree = "<group>"; };
 		B5843C581AE940D3004A545E /* Toaster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toaster.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -45,7 +43,6 @@
 			isa = PBXGroup;
 			children = (
 				B5843C351AE940B6004A545E /* Toaster */,
-				B5843C4B1AE940B6004A545E /* ToasterTests */,
 				B5843C341AE940B6004A545E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,23 +74,6 @@
 			isa = PBXGroup;
 			children = (
 				B5843C371AE940B6004A545E /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		B5843C4B1AE940B6004A545E /* ToasterTests */ = {
-			isa = PBXGroup;
-			children = (
-				B5843C4E1AE940B6004A545E /* ToasterTests.swift */,
-				B5843C4C1AE940B6004A545E /* Supporting Files */,
-			);
-			path = ToasterTests;
-			sourceTree = "<group>";
-		};
-		B5843C4C1AE940B6004A545E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B5843C4D1AE940B6004A545E /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
