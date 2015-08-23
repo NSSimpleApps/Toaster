@@ -69,17 +69,17 @@ private extension UIApplication {
 
 public enum ToasterPosition {
     
-    case TopLeft
-    case TopCenter
-    case TopRight
+    case LeftXTopY
+    case CenterXTopY
+    case RightXTopY
     
-    case CenterLeft
-    case CenterCenter
-    case CenterRight
+    case LeftXCenterY
+    case CenterXCenterY
+    case RightXCenterY
     
-    case BottomLeft
-    case BottomCenter
-    case BottomRight
+    case LeftXBottomY
+    case CenterXBottomY
+    case RightXBottomY
     
     func center(rect: CGRect) -> CGPoint {
         
@@ -88,25 +88,25 @@ public enum ToasterPosition {
         
         switch self {
             
-        case TopLeft:
+        case LeftXTopY:
             return CGPointMake(width/6, height/6)
-        case TopCenter:
+        case CenterXTopY:
             return CGPointMake(width/2, height/6)
-        case TopRight:
+        case RightXTopY:
             return CGPointMake(5*width/6, height/6)
             
-        case CenterLeft:
+        case LeftXCenterY:
             return CGPointMake(width/6, height/2)
-        case CenterCenter:
+        case CenterXCenterY:
             return CGPointMake(width/2, height/2)
-        case CenterRight:
+        case RightXCenterY:
             return CGPointMake(5*width/6, height/2)
             
-        case BottomLeft:
+        case LeftXBottomY:
             return CGPointMake(width/6, 5*height/6)
-        case BottomCenter:
+        case CenterXBottomY:
             return CGPointMake(width/2, 5*height/6)
-        case BottomRight:
+        case RightXBottomY:
             return CGPointMake(5*width/6, 5*height/6)
         }
     }
@@ -155,7 +155,7 @@ class Toaster : UIView {
         }
     }
 
-    convenience init(toasterPosition: ToasterPosition = .CenterCenter) {
+    convenience init(toasterPosition: ToasterPosition = .CenterXCenterY) {
         
         let mainViewFrame = UIApplication.sharedApplication().mainView!.frame
         
@@ -204,9 +204,11 @@ class Toaster : UIView {
         return label
     }
     
-    private func hideWithDuration(duration: NSTimeInterval) {
+    private func hideToaster() {
         
-        UIView.animateWithDuration(duration, animations: { () -> Void in
+        let defaultDuration: NSTimeInterval = 0.7
+        
+        UIView.animateWithDuration(defaultDuration, animations: { () -> Void in
             
             self.alpha = 0
             
@@ -232,20 +234,32 @@ class Toaster : UIView {
             mainView.addGestureRecognizer(self.tapGestureRecognizer)
         }
         
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(duration/2 * Double(NSEC_PER_SEC)))
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(duration * Double(NSEC_PER_SEC)))
         
         dispatch_after(delayTime, dispatch_get_main_queue()) {
         
-            self.hideWithDuration(duration/2)
+            self.hideToaster()
         }
     }
 }
 
 extension UIView {
     
-    func showToaster(message: String, duration: NSTimeInterval = 2.0) {
+    func showToaster(message: String, center: CGPoint, duration: NSTimeInterval = 2.0) {
         
-        let toaster = Toaster(center: self.center)
+        let toaster = Toaster(center: center)
+        toaster.show(message, duration: duration)
+    }
+    
+    func showToaster(message: String, topLeftCorner: CGPoint, duration: NSTimeInterval = 2.0) {
+        
+        let toaster = Toaster(topLeftCorner: topLeftCorner)
+        toaster.show(message, duration: duration)
+    }
+    
+    func showToaster(message: String, toasterPosition: ToasterPosition, duration: NSTimeInterval = 2.0) {
+        
+        let toaster = Toaster(toasterPosition: toasterPosition)
         toaster.show(message, duration: duration)
     }
 }

@@ -23,22 +23,24 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func toastAtCustomPosition() {
+        
+        Toaster(toasterPosition: .LeftXTopY).show("Tap to hide annoying view.")
+    }
     
-    @IBAction func showToasterAtCenter() {
+    @IBAction func toastAtCustomCenter() {
         
         Toaster(center: CGPointMake(200, 200)).show("Tap to hide annoying view.")
-        
-        //Toaster(toasterPosition: .BottomRight).show("Tap to hide annoying view.")
     }
-
-    @IBAction func showToasterAtTopLeftCorner() {
+    
+    @IBAction func toastAtCustomTopLeftCorner() {
         
         Toaster(topLeftCorner: CGPointMake(200, 200)).show("Tap to hide annoying view.")
     }
     
-    @IBAction func showToasterOnView() {
+    @IBAction func toastInView() {
         
-        self.customView.showToaster("Tap to hide annoying view")
+        self.customView.showToaster("Tap to hide annoying view", center: self.customView.center)
     }
 }
 

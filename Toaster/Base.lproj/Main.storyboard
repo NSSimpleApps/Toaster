@@ -17,51 +17,63 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3GU-la-buc">
-                                <rect key="frame" x="242" y="114" width="117" height="30"/>
-                                <state key="normal" title="Toast with center">
+                                <rect key="frame" x="222" y="133" width="157" height="30"/>
+                                <state key="normal" title="Toast at custom center">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="showToasterAtCenter" destination="BYZ-38-t0r" eventType="touchUpInside" id="QFM-KX-eMB"/>
+                                    <action selector="toastAtCustomCenter" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lja-Vc-FAN"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KM2-6f-HJR">
-                                <rect key="frame" x="256" y="190" width="89" height="30"/>
+                                <rect key="frame" x="256" y="209" width="89" height="30"/>
                                 <state key="normal" title="Toast in view">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="showToasterOnView" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ucr-eb-l7D"/>
+                                    <action selector="toastInView" destination="BYZ-38-t0r" eventType="touchUpInside" id="oP3-CS-FhK"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZMu-X3-jQR">
-                                <rect key="frame" x="200" y="286" width="200" height="200"/>
+                                <rect key="frame" x="200" y="305" width="200" height="200"/>
                                 <color key="backgroundColor" red="0.18820326849999999" green="1" blue="0.048200677060000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="Ae4-8K-JfS"/>
-                                    <constraint firstAttribute="height" constant="200" id="ad8-Q4-O6i"/>
+                                    <constraint firstAttribute="height" constant="200" id="M82-qT-Hgj"/>
+                                    <constraint firstAttribute="width" constant="200" id="gAr-ml-ChC"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZh-Kg-CkD">
-                                <rect key="frame" x="215" y="152" width="171" height="30"/>
-                                <state key="normal" title="Toast with top left corner">
+                                <rect key="frame" x="195" y="171" width="211" height="30"/>
+                                <state key="normal" title="Toast at custom top left corner">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="showToasterAtTopLeftCorner" destination="BYZ-38-t0r" eventType="touchUpInside" id="kki-eC-hCq"/>
+                                    <action selector="toastAtCustomTopLeftCorner" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wel-Ew-OV5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GjY-ij-VmB">
+                                <rect key="frame" x="216" y="95" width="169" height="30"/>
+                                <state key="normal" title="Toast at custom position">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="toastAtCustomPosition" destination="BYZ-38-t0r" eventType="touchUpInside" id="QU8-hI-uOX"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="ZMu-X3-jQR" secondAttribute="centerX" id="0ja-Cq-xuO"/>
-                            <constraint firstItem="KM2-6f-HJR" firstAttribute="top" secondItem="rZh-Kg-CkD" secondAttribute="bottom" constant="8" id="4iw-zA-Ch2"/>
-                            <constraint firstItem="ZMu-X3-jQR" firstAttribute="top" secondItem="KM2-6f-HJR" secondAttribute="bottom" constant="66" id="P5z-ib-ZP9"/>
-                            <constraint firstAttribute="centerX" secondItem="3GU-la-buc" secondAttribute="centerX" constant="-0.5" id="WSI-U3-thc"/>
-                            <constraint firstAttribute="centerY" secondItem="ZMu-X3-jQR" secondAttribute="centerY" constant="-86" id="iE1-sO-AOd"/>
-                            <constraint firstItem="KM2-6f-HJR" firstAttribute="centerX" secondItem="rZh-Kg-CkD" secondAttribute="centerX" id="ksU-HX-kPt"/>
-                            <constraint firstItem="rZh-Kg-CkD" firstAttribute="top" secondItem="3GU-la-buc" secondAttribute="bottom" constant="8" id="npu-vw-bjs"/>
-                            <constraint firstItem="3GU-la-buc" firstAttribute="centerX" secondItem="rZh-Kg-CkD" secondAttribute="centerX" id="ubl-Zm-0nZ"/>
+                            <constraint firstItem="KM2-6f-HJR" firstAttribute="top" secondItem="rZh-Kg-CkD" secondAttribute="bottom" constant="8" id="2i3-2F-Mcl"/>
+                            <constraint firstItem="ZMu-X3-jQR" firstAttribute="top" secondItem="KM2-6f-HJR" secondAttribute="bottom" constant="66" id="BRn-9R-DEf"/>
+                            <constraint firstAttribute="centerY" secondItem="GjY-ij-VmB" secondAttribute="centerY" constant="190" id="LO2-82-jFI"/>
+                            <constraint firstItem="rZh-Kg-CkD" firstAttribute="top" secondItem="3GU-la-buc" secondAttribute="bottom" constant="8" id="RDN-UD-1Em"/>
+                            <constraint firstItem="rZh-Kg-CkD" firstAttribute="centerX" secondItem="3GU-la-buc" secondAttribute="centerX" id="SLB-U8-hzK"/>
+                            <constraint firstItem="KM2-6f-HJR" firstAttribute="centerX" secondItem="ZMu-X3-jQR" secondAttribute="centerX" constant="0.5" id="W4B-pk-Xn5"/>
+                            <constraint firstItem="3GU-la-buc" firstAttribute="top" secondItem="GjY-ij-VmB" secondAttribute="bottom" constant="8" id="Zj4-ka-U2O"/>
+                            <constraint firstAttribute="centerX" secondItem="GjY-ij-VmB" secondAttribute="centerX" constant="-0.5" id="deS-hg-Uhv"/>
+                            <constraint firstItem="3GU-la-buc" firstAttribute="centerX" secondItem="GjY-ij-VmB" secondAttribute="centerX" id="m4U-JA-RBm"/>
+                            <constraint firstItem="rZh-Kg-CkD" firstAttribute="centerX" secondItem="KM2-6f-HJR" secondAttribute="centerX" id="xbv-bS-IIq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="t6m-HB-oof"/>
