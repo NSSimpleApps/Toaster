@@ -22,7 +22,7 @@ extension UIViewController {
             
             let visibleViewController = navigationController.visibleViewController
         
-            return visibleViewController.topMostViewController()
+            return visibleViewController!.topMostViewController()
         
         } else if let tabBarController = self as? UITabBarController {
         
@@ -34,21 +34,6 @@ extension UIViewController {
             
             return self
         }
-    }
-}
-
-private extension NSString {
-    
-    func size(font: UIFont, maximumSize: CGSize, lineBreakMode: NSLineBreakMode) -> CGSize {
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineBreakMode = lineBreakMode
-        
-        let attributes = [NSFontAttributeName: font, NSParagraphStyleAttributeName: paragraphStyle]
-        
-        let boundingRect = self.boundingRectWithSize(maximumSize, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: attributes, context: nil)
-        
-        return boundingRect.size
     }
 }
 
@@ -131,7 +116,7 @@ class Toaster : UIView {
             let label = self.label(message, frame: self.frame)
             label.frame.origin = CGPoint(x: offset, y: offset)
             
-            self.frame = CGRect(origin: self.frame.origin, size: label.frame.rectByInsetting(dx: -offset, dy: -offset).size)
+            self.frame = CGRect(origin: self.frame.origin, size: label.frame.insetBy(dx: -offset, dy: -offset).size)
             
             self.addSubview(label)
         }
@@ -148,7 +133,7 @@ class Toaster : UIView {
             let label = self.label(message, frame: self.frame)
             label.frame.origin = CGPoint(x: offset, y: offset)
             
-            self.frame = CGRect(origin: CGPointZero, size: label.frame.rectByInsetting(dx: -offset, dy: -offset).size)
+            self.frame = CGRect(origin: CGPointZero, size: label.frame.insetBy(dx: -offset, dy: -offset).size)
             self.center = center
             
             self.addSubview(label)
@@ -167,7 +152,7 @@ class Toaster : UIView {
         
         super.init(frame: frame)
         
-        self.autoresizingMask = (.FlexibleLeftMargin | .FlexibleRightMargin | .FlexibleTopMargin | .FlexibleBottomMargin)
+        self.autoresizingMask = ([.FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleTopMargin, .FlexibleBottomMargin])
         
         self.layer.cornerRadius = 10.0
         self.layer.shadowColor = UIColor.blackColor().CGColor
@@ -180,13 +165,13 @@ class Toaster : UIView {
         self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("cleanUp:"))
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     private func label(message: String, frame: CGRect) -> UILabel {
         
-        let label = UILabel()
+        let label = UILabel(frame: frame)
         label.numberOfLines = 0
         label.font = UIFont.boldSystemFontOfSize(14.0)
         label.textAlignment = NSTextAlignment.Center
@@ -194,12 +179,7 @@ class Toaster : UIView {
         label.textColor = UIColor.whiteColor()
         label.backgroundColor = UIColor.clearColor()
         label.text = message
-        
-        let maximumLabelSize = frame.rectByInsetting(dx: offset, dy: offset).size
-        
-        let labelSize = message.size(label.font, maximumSize: maximumLabelSize, lineBreakMode: label.lineBreakMode)
-        
-        label.frame = CGRect(origin: CGPointZero, size: labelSize)
+        label.sizeToFit()
         
         return label
     }
