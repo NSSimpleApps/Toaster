@@ -103,7 +103,7 @@ class Toaster : UIView {
     
     private var tapGestureRecognizer = UITapGestureRecognizer()
     
-    private var addLabelBlock: ((String) -> ())?
+    private var addLabelBlock: ((String) -> ())!
     
     convenience init(topLeftCorner: CGPoint) {
         
@@ -206,7 +206,7 @@ class Toaster : UIView {
     
     func show(message: String, duration: NSTimeInterval = 2.0) {
         
-        self.addLabelBlock!(message)
+        self.addLabelBlock(message)
         
         if let mainView = UIApplication.sharedApplication().mainView {
             
