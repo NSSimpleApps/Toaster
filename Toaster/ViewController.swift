@@ -10,8 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var customView: UIView!
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -23,24 +21,21 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func toastAtCustomPosition() {
+    @IBAction func toastAtCustomTopLeftCorner() {
         
-        Toaster(toasterPosition: .LeftXTopY).show("Tap to hide annoying view.")
+        self.view.showToasterWithMessage("Tap to hide annoying view.", topLeftCorner: CGPointMake(200, 200))
     }
     
     @IBAction func toastAtCustomCenter() {
         
-        Toaster(center: CGPointMake(200, 200)).show("Tap to hide annoying view.")
+        self.view.showToasterWithMessage("Tap to hide annoying view.", center: CGPointMake(200, 200))
     }
     
-    @IBAction func toastAtCustomTopLeftCorner() {
+    @IBAction func toastWithAttributedString() {
         
-        Toaster(topLeftCorner: CGPointMake(200, 200)).show("Tap to hide annoying view.")
-    }
-    
-    @IBAction func toastInView() {
+        let attributedString = NSAttributedString(string: "Tap to hide annoying view.", attributes: [NSBackgroundColorAttributeName: UIColor.blueColor(), NSFontAttributeName: UIFont(name: "Helvetica", size: 20)!])
         
-        self.customView.showToaster("Tap to hide annoying view", center: self.customView.center)
+        self.view.showToasterWithAttributedMessage(attributedString, topLeftCorner: CGPoint(x: 200, y: 200))
     }
 }
 
