@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B51234F91C5DD271000BC2AC /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = B51234F81C5DD271000BC2AC /* README.md */; };
-		B515A1F51B89D42E00285600 /* Toaster.gif in Resources */ = {isa = PBXBuildFile; fileRef = B515A1F41B89D42E00285600 /* Toaster.gif */; };
 		B5843C391AE940B6004A545E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5843C381AE940B6004A545E /* AppDelegate.swift */; };
 		B5843C3B1AE940B6004A545E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5843C3A1AE940B6004A545E /* ViewController.swift */; };
 		B5843C3E1AE940B6004A545E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5843C3C1AE940B6004A545E /* Main.storyboard */; };
@@ -141,7 +139,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5843C3E1AE940B6004A545E /* Main.storyboard in Resources */,
-				B515A1F51B89D42E00285600 /* Toaster.gif in Resources */,
 				B5843C431AE940B6004A545E /* LaunchScreen.xib in Resources */,
 				B5843C401AE940B6004A545E /* Images.xcassets in Resources */,
 			);
@@ -156,7 +153,6 @@
 			files = (
 				B5843C3B1AE940B6004A545E /* ViewController.swift in Sources */,
 				B5843C391AE940B6004A545E /* AppDelegate.swift in Sources */,
-				B51234F91C5DD271000BC2AC /* README.md in Sources */,
 				B5843C591AE940D3004A545E /* Toaster.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,7 +216,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -259,7 +255,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
