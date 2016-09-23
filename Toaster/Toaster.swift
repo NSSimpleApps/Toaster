@@ -12,22 +12,22 @@ private let offset: CGFloat = 3
 
 private class Toaster : UIView {
     
-    private override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    fileprivate override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         self.removeFromSuperview()
     }
     
-    var duration: NSTimeInterval = 2
+    var duration: TimeInterval = 2
     
-    override func willMoveToSuperview(newSuperview: UIView?) {
+    override func willMove(toSuperview newSuperview: UIView?) {
         
-        super.willMoveToSuperview(newSuperview)
+        super.willMove(toSuperview: newSuperview)
         
         if let _ = newSuperview {
             
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(self.duration * Double(NSEC_PER_SEC)))
+            let delayTime = DispatchTime.now() + Double(Int64(self.duration * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             
-            dispatch_after(delayTime, dispatch_get_main_queue()) { [weak self] () in
+            DispatchQueue.main.asyncAfter(deadline: delayTime) { [weak self] () in
                 
                 self?.hideToaster()
             }
@@ -36,7 +36,7 @@ private class Toaster : UIView {
     
     convenience init(topLeftCorner: CGPoint, message: String) {
         
-        let screenBounds = UIScreen.mainScreen().bounds.size
+        let screenBounds = UIScreen.main.bounds.size
         
         let estimatedSize = CGSize(width: screenBounds.width/3, height: screenBounds.height/3)
         
@@ -50,7 +50,7 @@ private class Toaster : UIView {
     
     convenience init(center: CGPoint, message: String) {
         
-        let screenBounds = UIScreen.mainScreen().bounds.size
+        let screenBounds = UIScreen.main.bounds.size
         
         let estimatedSize = CGSize(width: screenBounds.width/3, height: screenBounds.height/3)
         
@@ -66,7 +66,7 @@ private class Toaster : UIView {
     
     convenience init(topLeftCorner: CGPoint, attributedMessage: NSAttributedString) {
         
-        let screenBounds = UIScreen.mainScreen().bounds.size
+        let screenBounds = UIScreen.main.bounds.size
         
         let estimatedSize = CGSize(width: screenBounds.width/3, height: screenBounds.height/3)
         
@@ -80,7 +80,7 @@ private class Toaster : UIView {
     
     convenience init(center: CGPoint, attributedMessage: NSAttributedString) {
         
-        let screenBounds = UIScreen.mainScreen().bounds.size
+        let screenBounds = UIScreen.main.bounds.size
         
         let estimatedSize = CGSize(width: screenBounds.width/3, height: screenBounds.height/3)
         
@@ -94,19 +94,19 @@ private class Toaster : UIView {
         self.addSubview(label)
     }
     
-    override private init(frame: CGRect) {
+    override fileprivate init(frame: CGRect) {
         
         super.init(frame: frame)
         
-        self.autoresizingMask = ([.FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleTopMargin, .FlexibleBottomMargin])
+        self.autoresizingMask = ([.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin])
         
         self.layer.cornerRadius = 10.0
-        self.layer.shadowColor = UIColor.blackColor().CGColor
+        self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 0.6
         self.layer.shadowRadius = 4.0
-        self.layer.shadowOffset = CGSizeMake(4.0, 4.0)
+        self.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
         
-        self.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
+        self.backgroundColor = UIColor.black.withAlphaComponent(0.8)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -114,55 +114,55 @@ private class Toaster : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private class func label(message: String, size: CGSize) -> UILabel {
+    fileprivate class func label(_ message: String, size: CGSize) -> UILabel {
         
-        let label = UILabel(frame: CGRect(origin: CGPointZero, size: size))
+        let label = UILabel(frame: CGRect(origin: CGPoint.zero, size: size))
         label.numberOfLines = 0
-        label.font = UIFont.boldSystemFontOfSize(14.0)
-        label.textAlignment = NSTextAlignment.Center
-        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        label.textColor = UIColor.whiteColor()
-        label.backgroundColor = UIColor.clearColor()
+        label.font = UIFont.boldSystemFont(ofSize: 14.0)
+        label.textAlignment = NSTextAlignment.center
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.textColor = UIColor.white
+        label.backgroundColor = UIColor.clear
         label.text = message
         label.sizeToFit()
         
         return label
     }
     
-    private class func label(message: NSAttributedString, size: CGSize) -> UILabel {
+    fileprivate class func label(_ message: NSAttributedString, size: CGSize) -> UILabel {
         
-        let label = UILabel(frame: CGRect(origin: CGPointZero, size: size))
+        let label = UILabel(frame: CGRect(origin: CGPoint.zero, size: size))
         label.numberOfLines = 0
-        label.textAlignment = NSTextAlignment.Center
-        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        label.backgroundColor = UIColor.clearColor()
+        label.textAlignment = NSTextAlignment.center
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.backgroundColor = UIColor.clear
         label.attributedText = message
         label.sizeToFit()
         
         return label
     }
     
-    private func hideToaster() {
+    fileprivate func hideToaster() {
         
-        let defaultDuration: NSTimeInterval = 0.7
+        let defaultDuration: TimeInterval = 0.7
         
-        UIView.animateWithDuration(defaultDuration, animations: { [weak self] () -> Void in
+        UIView.animate(withDuration: defaultDuration, animations: { [weak self] () -> Void in
             
             self?.alpha = 0
             
-        }) { [weak self] (finished) -> Void in
+        }, completion: { [weak self] (finished) -> Void in
             
             if let strongSelf = self {
                 
                 strongSelf.removeFromSuperview()
             }
-        }
+        }) 
     }
 }
 
 public extension UIView {
     
-    public func showToasterWithMessage(message: String, center: CGPoint, duration: NSTimeInterval = 2.0) {
+    public func showToaster(withMessage message: String, center: CGPoint, duration: TimeInterval = 2.0) {
         
         let toaster = Toaster(center: center, message: message)
         toaster.duration = duration
@@ -170,7 +170,7 @@ public extension UIView {
         self.addSubview(toaster)
     }
     
-    public func showToasterWithMessage(message: String, topLeftCorner: CGPoint, duration: NSTimeInterval = 2.0) {
+    public func showToaster(withMessage message: String, topLeftCorner: CGPoint, duration: TimeInterval = 2.0) {
         
         let toaster = Toaster(topLeftCorner: topLeftCorner, message: message)
         toaster.duration = duration
@@ -178,7 +178,7 @@ public extension UIView {
         self.addSubview(toaster)
     }
     
-    public func showToasterWithAttributedMessage(attributedMessage: NSAttributedString, topLeftCorner: CGPoint, duration: NSTimeInterval = 2.0) {
+    public func showToaster(withAttributedMessage attributedMessage: NSAttributedString, topLeftCorner: CGPoint, duration: TimeInterval = 2.0) {
         
         let toaster = Toaster(topLeftCorner: topLeftCorner, attributedMessage: attributedMessage)
         toaster.duration = duration
@@ -186,7 +186,7 @@ public extension UIView {
         self.addSubview(toaster)
     }
     
-    public func showToasterWithAttributedMessage(attributedMessage: NSAttributedString, center: CGPoint, duration: NSTimeInterval = 2.0) {
+    public func showToaster(withAttributedMessage attributedMessage: NSAttributedString, center: CGPoint, duration: TimeInterval = 2.0) {
         
         let toaster = Toaster(center: center, attributedMessage: attributedMessage)
         toaster.duration = duration

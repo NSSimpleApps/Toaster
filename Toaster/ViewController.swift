@@ -23,19 +23,19 @@ class ViewController: UIViewController {
 
     @IBAction func toastAtCustomTopLeftCorner() {
         
-        self.view.showToasterWithMessage("Tap to hide annoying view.", topLeftCorner: CGPointMake(200, 200))
+        self.view.showToaster(withMessage: "Tap to hide annoying view.", topLeftCorner: CGPoint(x: 200, y: 200))
     }
     
     @IBAction func toastAtCustomCenter() {
         
-        self.view.showToasterWithMessage("Tap to hide annoying view.", center: CGPointMake(200, 200))
+        self.view.showToaster(withMessage: "Tap to hide annoying view.", center: CGPoint(x: 200, y: 200))
     }
     
     @IBAction func toastWithAttributedString() {
         
-        let attributedString = NSAttributedString(string: "Tap to hide annoying view.", attributes: [NSBackgroundColorAttributeName: UIColor.blueColor(), NSFontAttributeName: UIFont(name: "Helvetica", size: 20)!])
+        let attributedString = NSAttributedString(string: "Tap to hide annoying view.", attributes: [NSBackgroundColorAttributeName: UIColor.blue, NSFontAttributeName: UIFont(name: "Helvetica", size: 20)!])
         
-        self.view.showToasterWithAttributedMessage(attributedString, topLeftCorner: CGPoint(x: 200, y: 200))
+        self.view.showToaster(withAttributedMessage: attributedString, topLeftCorner: CGPoint(x: 200, y: 200))
     }
 }
 
