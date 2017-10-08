@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     
     @IBAction func toastWithAttributedString() {
         
-        let attributedString = NSAttributedString(string: "Tap to hide annoying view.", attributes: [NSBackgroundColorAttributeName: UIColor.blue, NSFontAttributeName: UIFont(name: "Helvetica", size: 20)!])
+        let attributedString = NSAttributedString(string: "Tap to hide annoying view.", attributes: [NSAttributedStringKey.backgroundColor: UIColor.blue, NSAttributedStringKey.font: UIFont(name: "Helvetica", size: 20)!])
         
         self.view.showToaster(withAttributedMessage: attributedString, topLeftCorner: CGPoint(x: 200, y: 200))
     }
