@@ -162,7 +162,7 @@ private class Toaster : UIView {
 
 public extension UIView {
     
-    public func showToaster(withMessage message: String, center: CGPoint, duration: TimeInterval = 2.0) {
+    func showToaster(withMessage message: String, center: CGPoint, duration: TimeInterval = 2.0) {
         
         let toaster = Toaster(center: center, message: message)
         toaster.duration = duration
@@ -170,7 +170,7 @@ public extension UIView {
         self.addSubview(toaster)
     }
     
-    public func showToaster(withMessage message: String, topLeftCorner: CGPoint, duration: TimeInterval = 2.0) {
+    func showToaster(withMessage message: String, topLeftCorner: CGPoint, duration: TimeInterval = 2.0) {
         
         let toaster = Toaster(topLeftCorner: topLeftCorner, message: message)
         toaster.duration = duration
@@ -178,7 +178,7 @@ public extension UIView {
         self.addSubview(toaster)
     }
     
-    public func showToaster(withAttributedMessage attributedMessage: NSAttributedString, topLeftCorner: CGPoint, duration: TimeInterval = 2.0) {
+    func showToaster(withAttributedMessage attributedMessage: NSAttributedString, topLeftCorner: CGPoint, duration: TimeInterval = 2.0) {
         
         let toaster = Toaster(topLeftCorner: topLeftCorner, attributedMessage: attributedMessage)
         toaster.duration = duration
@@ -186,7 +186,7 @@ public extension UIView {
         self.addSubview(toaster)
     }
     
-    public func showToaster(withAttributedMessage attributedMessage: NSAttributedString, center: CGPoint, duration: TimeInterval = 2.0) {
+    func showToaster(withAttributedMessage attributedMessage: NSAttributedString, center: CGPoint, duration: TimeInterval = 2.0) {
         
         let toaster = Toaster(center: center, attributedMessage: attributedMessage)
         toaster.duration = duration
